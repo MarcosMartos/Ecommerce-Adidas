@@ -7,17 +7,18 @@ import {
   Typography,
 } from "@mui/material";
 import { Link } from "react-router-dom";
+import "./ProductCard.css";
 
 const ProductCard = ({ elemento, isInItemList = true }) => {
   return (
-    <Card sx={{ width: 345 }}>
+    <Card className="tarjetaProducto" sx={{ width: 345 }}>
       <CardMedia
         component="img"
         alt="green iguana"
-        height="140"
+        height="200"
         image={elemento.img}
       />
-      <CardContent>
+      <CardContent className="detallesProducto">
         <Typography gutterBottom variant="h5" component="div">
           {elemento.title}
         </Typography>
@@ -25,7 +26,7 @@ const ProductCard = ({ elemento, isInItemList = true }) => {
           {elemento.description}
         </Typography>
       </CardContent>
-      <CardActions>
+      <CardActions className="detallesProducto">
         <Link to={`/itemDetail/${elemento.id}`}>
           <Button size="small">Ver detalle</Button>
         </Link>

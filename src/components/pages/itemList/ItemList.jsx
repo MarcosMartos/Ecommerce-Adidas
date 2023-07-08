@@ -3,8 +3,6 @@ import ProductCard from "../../common/productCard/ProductCard";
 const ItemList = ({ items }) => {
   return (
     <div>
-      <h1>Aca van los productos</h1>
-
       <div
         style={{
           width: "100%",

@@ -1,0 +1,18 @@
+.contenedor {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.imagenDetalle {
+  width: 500px;
+}
+
+h2 {
+  font-size: 32px;
+}
+
+h4 {
+  font-size: 28px;
+}

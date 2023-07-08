@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import CounterContainer from "../../common/counter/CounterContainer";
 import { products } from "../../../productsMock";
 import { useParams } from "react-router-dom";
+import "./ItemDetail.css";
 
 const ItemDetail = () => {
   const [producto, setProducto] = useState({});
@@ -24,7 +25,8 @@ const ItemDetail = () => {
   };
 
   return (
-    <div>
+    <div className="contenedor">
+      <img className="imagenDetalle" src={producto.img} alt="" />
       <h2>{producto.title}</h2>
       <h4>{producto.price}</h4>
 

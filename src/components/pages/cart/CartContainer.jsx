@@ -1,5 +1,9 @@
 const Cart = () => {
-  return <div>Carrito de compra :3</div>;
+  return (
+    <div>
+      <h1>Carrito de compra :3</h1>
+    </div>
+  );
 };
 
 export default Cart;
