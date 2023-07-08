@@ -1,17 +1,27 @@
-import { useState } from "react";
-import ItemListContainer from "./components/common/cartWidget/itemListContainer/ItemListContainer";
-import Navbar from "./components/layout/navbar/Navbar";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import ItemListContainer from "./components/pages/itemList/ItemListContainer";
+import CartContainer from "./components/pages/cart/CartContainer";
+import Layout from "./components/layout/Layout";
+import ItemDetail from "./components/pages/itemDetail/ItemDetail";
 
+// CONFIGURAR EL ROUTING
 function App() {
-  const [saludo, setSaludo] = useState(
-    "Hola, bienvenido a la tienda falsa de adidas"
-  );
-
   return (
-    <div>
-      <Navbar />
-      <ItemListContainer saludo={saludo} />
-    </div>
+    <BrowserRouter>
+      <Routes>
+        <Route element={<Layout />}>
+          <Route path="/" element={<ItemListContainer />} />
+          <Route
+            path="/category/:categoryName"
+            element={<ItemListContainer />}
+          />
+          <Route path="/itemDetail/:id" element={<ItemDetail />} />
+          <Route path="/cart" element={<CartContainer />} />
+        </Route>
+
+        <Route path="*" element={<h1>404 not found</h1>} />
+      </Routes>
+    </BrowserRouter>
   );
 }
 

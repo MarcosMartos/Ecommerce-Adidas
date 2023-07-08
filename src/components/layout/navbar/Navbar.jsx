@@ -1,6 +1,7 @@
 import "./Navbar.css";
 import { Box, Grid } from "@mui/material";
 import Cartwidget from "../../common/cartWidget/Cartwidget";
+import { Link } from "react-router-dom";
 
 const Navbar = () => {
   return (
@@ -10,27 +11,27 @@ const Navbar = () => {
         {/* Secciones */}
         <Grid item xs={2}>
           {/* Imagen logo */}
-          <div className="img-logo">
+          <Link to="/" className="img-logo">
             <img
               src="https://res.cloudinary.com/df4ghpsiz/image/upload/v1687018684/Adidas_isologo_lkb7ah.svg"
               alt="Logo de adidas"
             />
-          </div>
+          </Link>
         </Grid>
         <Grid className="seccion-lista" item xs={8}>
           {/* Lista de rutas */}
           <ul className="lista">
             <li>
-              <a href="">Todas las zapatillas</a>
+              <Link to="/">Todas las zapatillas</Link>
             </li>
             <li>
-              <a href="">Hombre</a>
+              <Link to="/category/hombre">Hombre</Link>
             </li>
             <li>
-              <a href="">Mujer</a>
+              <Link to="/category/mujer">Mujer</Link>
             </li>
             <li>
-              <a href="">Niño</a>
+              <Link to="/category/niño">Niño</Link>
             </li>
           </ul>
         </Grid>
