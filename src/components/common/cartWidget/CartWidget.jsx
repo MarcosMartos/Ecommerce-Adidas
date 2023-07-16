@@ -4,6 +4,8 @@ import IconButton from "@mui/material/IconButton";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 
 import { Link } from "react-router-dom";
+import { useContext } from "react";
+import { CartContext } from "../../../context/CartContext";
 
 const StyledBadge = styled(Badge)(({ theme }) => ({
   "& .MuiBadge-badge": {
@@ -15,11 +17,12 @@ const StyledBadge = styled(Badge)(({ theme }) => ({
 }));
 
 export default function CustomizedBadges() {
+  const { cart } = useContext(CartContext);
   return (
     <>
       <Link to="/cart">
         <IconButton aria-label="cart">
-          <StyledBadge badgeContent={4} color="primary">
+          <StyledBadge badgeContent={cart.length} color="primary">
             <ShoppingCartIcon />
           </StyledBadge>
         </IconButton>
