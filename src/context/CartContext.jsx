@@ -34,7 +34,38 @@ const CartContextProvider = ({ children }) => {
     return exist;
   };
 
-  let data = { cart, addToCart, clearToCart, deleteById };
+  //Calcular el total
+
+  const getTotalPrice = () => {
+    let total = cart.reduce((acum, elemento) => {
+      return acum + elemento.price * elemento.quantity;
+    }, 0);
+    return total;
+  };
+
+  //Calcular la cantidad de items
+
+  const getTotalQuantity = () => {
+    let total = cart.reduce((acc, elemento) => {
+      return acc + elemento.quantity;
+    }, 0);
+    return total;
+  };
+
+  const getQuantityById = (id) => {
+    const product = cart.find((elemento) => elemento.id === +id);
+    return product?.quantity;
+  };
+
+  let data = {
+    cart,
+    addToCart,
+    clearToCart,
+    deleteById,
+    getTotalPrice,
+    getTotalQuantity,
+    getQuantityById,
+  };
 
   return <CartContext.Provider value={data}>{children}</CartContext.Provider>;
 };

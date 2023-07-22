@@ -1,8 +1,29 @@
 import { useContext } from "react";
 import { CartContext } from "../../../context/CartContext";
+import Swal from "sweetalert2";
 
 const Cart = () => {
-  const { cart, clearToCart, deleteById } = useContext(CartContext);
+  const { cart, clearToCart, deleteById, getTotalPrice } =
+    useContext(CartContext);
+
+  let total = getTotalPrice();
+
+  const limpiar = () => {
+    Swal.fire({
+      title: "¿Seguro quieres limpiar el carrito?",
+      showDenyButton: true,
+      confirmButtonText: "Sí, eliminar",
+      denyButtonText: `No, no eliminar`,
+    }).then((result) => {
+      /* Read more about isConfirmed, isDenied below */
+      if (result.isConfirmed) {
+        clearToCart();
+        Swal.fire("Eliminado correctamente!", "", "success");
+      } else if (result.isDenied) {
+        Swal.fire("Acción cancelada", "", "info");
+      }
+    });
+  };
 
   return (
     <div>
@@ -18,7 +39,9 @@ const Cart = () => {
         );
       })}
 
-      <button onClick={clearToCart}>Limpiar carrito</button>
+      {cart.length > 0 && <button onClick={limpiar}>Limpiar carrito</button>}
+
+      <h2>El total es {total}</h2>
     </div>
   );
 };

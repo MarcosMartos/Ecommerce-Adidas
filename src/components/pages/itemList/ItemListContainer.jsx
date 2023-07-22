@@ -14,7 +14,9 @@ const ItemListContainer = () => {
       (elemento) => elemento.category === categoryName
     );
     const tarea = new Promise((resolve, reject) => {
-      resolve(categoryName === undefined ? products : productsFiltrados);
+      setTimeout(() => {
+        resolve(categoryName === undefined ? products : productsFiltrados);
+      }, 500);
       //   reject({message: "No autorizado", status: 401})
     });
 
@@ -23,7 +25,7 @@ const ItemListContainer = () => {
       .catch((error) => setError(error));
   }, [categoryName]);
 
-  return <ItemList items={items} />;
+  return <>{<ItemList items={items} />}</>;
 };
 
 export default ItemListContainer;
