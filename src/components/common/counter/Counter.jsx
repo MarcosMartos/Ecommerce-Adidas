@@ -1,11 +1,29 @@
+import { Button, IconButton } from "@mui/material";
+import AddIcon from "@mui/icons-material/Add";
+import RemoveIcon from "@mui/icons-material/Remove";
+import "./Counter.css";
+import AddShoppingCartIcon from "@mui/icons-material/AddShoppingCart";
+
 const Counter = ({ contador, sumar, restar, onAdd }) => {
   return (
-    <div style={{ border: "2px solid steelblue", padding: "40px" }}>
-      <button onClick={sumar}>sumar</button>
-      <h3>{contador}</h3>
-      <button onClick={restar}>restar</button>
+    <div className="caja-contador">
+      <section className="contador">
+        <IconButton aria-label="delete">
+          <RemoveIcon onClick={restar} />
+        </IconButton>
+        <h3>{contador}</h3>
+        <IconButton aria-label="delete">
+          <AddIcon onClick={sumar} />
+        </IconButton>
+      </section>
 
-      <button onClick={() => onAdd(contador)}>Agregar al carrito</button>
+      <Button
+        onClick={() => onAdd(contador)}
+        variant="contained"
+        endIcon={<AddShoppingCartIcon />}
+      >
+        Agregar al carrito
+      </Button>
     </div>
   );
 };

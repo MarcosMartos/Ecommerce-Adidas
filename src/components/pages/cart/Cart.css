@@ -1,0 +1,66 @@
+/* .container {
+  background-color: peru;
+}
+
+.title {
+  border: 2px solid red;
+} */
+
+.contenedor-cart {
+  display: flex;
+  justify-content: center;
+  min-height: 100vh;
+  margin: 2rem;
+}
+.contenedor-productos {
+  border-radius: 1rem;
+  background-color: #ebeeef;
+  width: 80vw;
+}
+
+.titulos-productos-carrito {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  font-family: "Questrial", sans-serif;
+  padding: 20px;
+  margin-top: 1rem;
+  font-size: 1.2rem;
+  background-color: #ebeeef;
+}
+.titulos-productos-carrito h4 {
+  padding: 0.2rem;
+  padding-right: 1rem;
+  padding-left: 1rem;
+  background-color: white;
+  box-shadow: 2px 2px 2px 2px;
+}
+
+.producto-carrito {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  align-items: center;
+  font-family: "Questrial", sans-serif;
+  font-size: 1.5rem;
+  background-color: #ebeeef;
+  padding: 1rem;
+}
+
+.img-producto-carrito {
+  width: 8rem;
+}
+.nombre-producto {
+  width: 8rem;
+}
+
+.accion-carrito {
+  height: 8rem;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  text-align: center;
+  padding: 3rem;
+  font-family: "Questrial", sans-serif;
+}

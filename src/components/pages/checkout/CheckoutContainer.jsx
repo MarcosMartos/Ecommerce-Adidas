@@ -9,77 +9,88 @@ import {
   doc,
 } from "firebase/firestore";
 import { Link } from "react-router-dom";
+import { useFormik } from "formik";
+import Checkout from "./Checkout";
+import * as Yup from "yup";
+import "./Checkout.css";
+import { Button } from "@mui/material";
 
 const CheckoutContainer = () => {
+  const { cart, getTotalPrice, clearToCart } = useContext(CartContext);
   const [orderId, setOrderId] = useState("");
-  const { cart, getTotalPrice } = useContext(CartContext);
-
-  const [data, setData] = useState({
-    name: "",
-    phone: "",
-    email: "",
-  });
-
   let total = getTotalPrice();
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
+  const { handleSubmit, handleChange, errors } = useFormik({
+    initialValues: {
+      name: "",
+      lastName: "",
+      phone: "",
+      email: "",
+      repeatEmail: "",
+    },
+    onSubmit: (data) => {
+      let order = {
+        buyer: data,
+        items: cart,
+        total,
+        date: serverTimestamp(),
+      };
+      //CREAR LA ORDEN DE COMPRA EN FIREBASE
+      const ordersCollection = collection(db, "orders");
+      addDoc(ordersCollection, order).then((res) => setOrderId(res.id));
 
-    let order = {
-      buyer: data,
-      items: cart,
-      total,
-      date: serverTimestamp(),
-    };
-
-    //CREAR LA ORDEN DE COMPRA EN FIREBASE
-    const ordersCollection = collection(db, "orders");
-    addDoc(ordersCollection, order).then((res) => setOrderId(res.id));
-
-    //MODIFICAR EL STOCK EN FIREBASE DE CADA DOCUMENTO
-    cart.forEach((product) => {
-      updateDoc(doc(db, "products", product.id), {
-        stock: product.stock - product.quantity,
+      //MODIFICAR EL STOCK EN FIREBASE DE CADA DOCUMENTO
+      cart.forEach((product) => {
+        updateDoc(doc(db, "products", product.id), {
+          stock: product.stock - product.quantity,
+        });
       });
-    });
-  };
-
-  const handleChange = (e) => {
-    setData({ ...data, [e.target.name]: e.target.value });
-  };
+    },
+    validationSchema: Yup.object({
+      name: Yup.string().required("Este campo es obligatorio"),
+      lastName: Yup.string().required("Este campo es obligatorio"),
+      phone: Yup.string().required("Este campo es obligatorio"),
+      email: Yup.string()
+        .required("Este campo es obligatorio")
+        .email("El email es incorrecto"),
+      repeatEmail: Yup.string()
+        .required("Este campo es obligatorio")
+        .oneOf([Yup.ref("email"), "Los emails no coinciden"]),
+    }),
+    validateOnChange: false,
+  });
 
   return (
     <div>
-      <h1>Checkout</h1>
-
       {orderId ? (
-        <div>
-          <h3>Gracias por su compra</h3>
-          <h4>Su numero de compra es: {orderId} </h4>
-          <Link to="/">Volver a comprar</Link>
+        <div
+          className="fondo-checkout {
+          "
+        >
+          <section className="cartel-compra">
+            <h3 className="titulo-compra">Gracias por su compra!</h3>
+            <h4 className="id-compra">Su numero de compra es: {orderId} </h4>
+            <img
+              className="imagen-compra"
+              src="https://res.cloudinary.com/df4ghpsiz/image/upload/v1687018684/Adidas_isologo_lkb7ah.svg"
+              alt="Logo de adidas"
+            />
+            <Link className="volver-home" to="/">
+              <Button onClick={clearToCart} variant="contained">
+                Volver
+              </Button>
+            </Link>
+          </section>
         </div>
       ) : (
-        <form onSubmit={handleSubmit}>
-          <input
-            type="text"
-            placeholder="Ingrese su nombre"
-            name="name"
-            onChange={handleChange}
-          />
-          <input
-            type="text"
-            placeholder="Ingrese su telefono"
-            name="phone"
-            onChange={handleChange}
-          />
-          <input
-            type="email"
-            placeholder="Ingrese su email"
-            name="email"
-            onChange={handleChange}
-          />
-          <button type="submit">Comprar</button>
-        </form>
+        <Checkout
+          orderId={orderId}
+          handleSubmit={handleSubmit}
+          handleChange={handleChange}
+          cart={cart}
+          total={total}
+          errors={errors}
+        />
       )}
     </div>
   );

@@ -1,16 +1,37 @@
-import { Skeleton } from "@mui/material";
+import { Grid, Skeleton } from "@mui/material";
 import ProductCard from "../../common/productCard/ProductCard";
+import "./ItemList.css";
 
 const ItemList = ({ items }) => {
   let arr = [1, 2, 3, 4];
 
   return (
     <div>
-      <h1 className={items.length > 0 ? "hayElementos" : ""}>
-        Aca van los productos
-      </h1>
-
+      <Grid container className="banner-principal">
+        <Grid
+          item
+          md={6}
+          display={"flex"}
+          flexDirection="column"
+          className="seccion-banner"
+        >
+          <h1 className="titulo-seccion-banner">adidas</h1>
+          <img
+            className="logo-banner"
+            src="https://res.cloudinary.com/df4ghpsiz/image/upload/v1687018684/Adidas_isologo_lkb7ah.svg"
+            alt="logo de adidas"
+          />
+          <h2 className="subtitulo-seccion-banner">Impossible is nothing</h2>
+        </Grid>
+        <Grid item md={6} className="imagen-banner">
+          <img
+            src="https://res.cloudinary.com/df4ghpsiz/image/upload/w_1000,ar_16:9,c_fill,g_auto,e_sharpen/v1686667900/Zapatillas_Forum_Low_Gris_HQ7096_01_standard_ge6dth.jpg"
+            alt=""
+          />
+        </Grid>
+      </Grid>
       <div
+        className="cards"
         style={{
           width: "100%",
           display: "flex",
@@ -46,10 +67,3 @@ const ItemList = ({ items }) => {
 };
 
 export default ItemList;
-
-<div>
-  <Skeleton variant="text" sx={{ fontSize: "1rem" }} />
-  <Skeleton variant="circular" width={40} height={40} />
-  <Skeleton variant="rectangular" width={210} height={60} />
-  <Skeleton variant="rounded" width={210} height={60} />
-</div>;

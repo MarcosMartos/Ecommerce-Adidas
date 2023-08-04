@@ -1,10 +1,17 @@
-import { Route, Routes } from "react-router-dom";
+import { Route, Routes, useLocation } from "react-router-dom";
 import Layout from "../components/layout/Layout";
 import { routes } from "./routes";
 import DashboardComponent from "../components/pages/dashboard/Dashboard";
 import ProtectedRoutes from "./ProtectedRoutes";
+import { useEffect } from "react";
 
 const AppRouter = () => {
+  const location = useLocation();
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [location]);
+
   return (
     <Routes>
       <Route element={<Layout />}>

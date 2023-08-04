@@ -26,7 +26,6 @@ const ItemListContainer = () => {
       let productos = res.docs.map((doc) => {
         return { id: doc.id, ...doc.data() };
       });
-      console.log(productos);
       setItems(productos);
     });
   }, [categoryName]);

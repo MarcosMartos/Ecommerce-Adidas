@@ -1,0 +1,15 @@
+.contador {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  align-items: center;
+  padding: 1.5rem;
+  font-family: "Questrial", sans-serif;
+}
+
+.caja-contador {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+}
