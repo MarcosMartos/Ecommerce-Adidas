@@ -23,3 +23,8 @@
   justify-content: space-around;
   align-items: center;
 }
+
+.icono-footer {
+  text-decoration: none;
+  color: black;
+}
