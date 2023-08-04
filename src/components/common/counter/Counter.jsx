@@ -8,12 +8,12 @@ const Counter = ({ contador, sumar, restar, onAdd }) => {
   return (
     <div className="caja-contador">
       <section className="contador">
-        <IconButton aria-label="delete">
-          <RemoveIcon onClick={restar} />
+        <IconButton onClick={restar} aria-label="delete">
+          <RemoveIcon />
         </IconButton>
         <h3>{contador}</h3>
-        <IconButton aria-label="delete">
-          <AddIcon onClick={sumar} />
+        <IconButton onClick={sumar} aria-label="delete">
+          <AddIcon />
         </IconButton>
       </section>
 
