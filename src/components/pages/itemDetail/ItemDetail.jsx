@@ -8,12 +8,12 @@ import "./ItemDetailContainer";
 const ItemDetail = ({ onAdd, totalQuantity, producto }) => {
   return (
     <Grid container className="contenedor">
-      <Grid xs={12} md={6} className="cajaImagen">
+      <Grid item md={6} className="cajaImagen">
         <figure className="contenedorImagen">
           <img className="imagenDetalle" src={producto.img} alt="imagen" />
         </figure>
       </Grid>
-      <Grid xs={12} md={6} className="cajaDescripcion">
+      <Grid item md={6} className="cajaDescripcion">
         <div className="info-producto">
           <h2>{producto.title}</h2>
           <h4>{producto.description}</h4>

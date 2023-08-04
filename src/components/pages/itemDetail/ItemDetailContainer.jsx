@@ -36,12 +36,6 @@ const ItemDetailContainer = () => {
     });
   };
 
-  //   let data = {
-  //     onAdd: onAdd,
-  //     totalQuantity: totalQuantity,
-  //     producto: producto,
-  //   };
-
   return (
     <ItemDetail
       onAdd={onAdd}
