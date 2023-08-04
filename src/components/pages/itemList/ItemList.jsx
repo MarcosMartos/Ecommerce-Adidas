@@ -4,7 +4,6 @@ import "./ItemList.css";
 
 const ItemList = ({ items }) => {
   let arr = [1, 2, 3, 4];
-  console.log(items);
   return (
     <div>
       <Grid container className="banner-principal">
