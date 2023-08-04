@@ -34,6 +34,7 @@ const CheckoutContainer = () => {
         items: cart,
         total,
         date: serverTimestamp(),
+        status: "generate",
       };
       //CREAR LA ORDEN DE COMPRA EN FIREBASE
       const ordersCollection = collection(db, "orders");

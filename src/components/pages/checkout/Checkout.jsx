@@ -1,5 +1,6 @@
 import { Button, TextField } from "@mui/material";
 import "./Checkout.css";
+import VerifiedIcon from "@mui/icons-material/Verified";
 
 const Checkout = ({ handleChange, handleSubmit, errors }) => {
   return (
@@ -56,8 +57,13 @@ const Checkout = ({ handleChange, handleSubmit, errors }) => {
             onChange={handleChange}
             helperText={errors.repeatEmail}
           />
-          <Button type="submit" variant="contained">
-            Enviar
+          <Button
+            type="submit"
+            variant="contained"
+            color="success"
+            endIcon={<VerifiedIcon />}
+          >
+            Realizar compra
           </Button>
         </form>
       </section>
